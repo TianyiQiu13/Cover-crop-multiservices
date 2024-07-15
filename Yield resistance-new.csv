@@ -1,0 +1,17 @@
+variable,period,pathway,cropland.type,mean,duration
+yield.resistance,2020s,ssp126,upland,10.95394575,6
+yield.resistance,2020s,ssp126,paddy,15.69636115,6
+yield.resistance,2020s,ssp370,upland,11.12178105,6
+yield.resistance,2020s,ssp370,paddy,16.48748068,6
+yield.resistance,2040s,ssp126,upland,14.43296018,26
+yield.resistance,2040s,ssp126,paddy,15.95972677,26
+yield.resistance,2040s,ssp370,upland,16.95133017,26
+yield.resistance,2040s,ssp370,paddy,17.30762773,26
+yield.resistance,2060s,ssp126,upland,17.72918723,46
+yield.resistance,2060s,ssp126,paddy,16.71654121,46
+yield.resistance,2060s,ssp370,upland,36.30750515,46
+yield.resistance,2060s,ssp370,paddy,21.84849136,46
+yield.resistance,2090s,ssp126,upland,20.73671268,76
+yield.resistance,2090s,ssp126,paddy,17.44556629,76
+yield.resistance,2090s,ssp370,upland,,76
+yield.resistance,2090s,ssp370,paddy,31.16094114,76

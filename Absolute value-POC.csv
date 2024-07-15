@@ -1,0 +1,357 @@
+type,variable,value
+cold,POC,1.56E+00
+temperate,POC,1.40E+00
+temperate,POC,1.40E+00
+temperate,POC,4.60E-01
+temperate,POC,4.60E-01
+temperate,POC,0.17
+temperate,POC,0.17
+temperate,POC,0.05
+temperate,POC,0.05
+temperate,POC,3.216
+temperate,POC,1.333333333
+temperate,POC,2.72
+temperate,POC,0.634666667
+temperate,POC,3.6
+temperate,POC,1.376
+temperate,POC,0.416
+temperate,POC,3.888
+temperate,POC,4.8
+temperate,POC,4.8
+temperate,POC,3.04
+temperate,POC,3.04
+temperate,POC,2.8
+temperate,POC,2.8
+cold,POC,3.47E+00
+cold,POC,3.47E+00
+cold,POC,3.47E+00
+cold,POC,3.47E+00
+temperate,POC,2.40E+00
+temperate,POC,2.40E+00
+temperate,POC,8.00E-01
+temperate,POC,8.00E-01
+temperate,POC,5.00E-01
+temperate,POC,5.00E-01
+temperate,POC,4.00E-01
+temperate,POC,4.00E-01
+temperate,POC,4.00E-01
+temperate,POC,4.00E-01
+temperate,POC,3.00E-01
+temperate,POC,3.00E-01
+cold,POC,4.85E+00
+cold,POC,3.03E+00
+cold,POC,1.64E+00
+cold,POC,1.58E+00
+cold,POC,6.55E+00
+cold,POC,2.02E+00
+cold,POC,1.58E+00
+cold,POC,8.18E-01
+temperate,POC,1.744
+temperate,POC,1.744
+temperate,POC,6.21474
+cold,POC,5
+cold,POC,6
+cold,POC,2
+cold,POC,2
+cold,POC,2.98E+00
+cold,POC,2.98E+00
+cold,POC,2.98E+00
+cold,POC,3.23E+00
+cold,POC,3.23E+00
+cold,POC,3.23E+00
+arid,POC,1.58E+00
+arid,POC,1.58E+00
+arid,POC,1.58E+00
+arid,POC,8.64E-01
+arid,POC,8.64E-01
+arid,POC,8.64E-01
+cold,MAOC,1.10E+01
+temperate,MAOC,4.88
+temperate,MAOC,4.88
+temperate,MAOC,5.04
+temperate,MAOC,5.04
+temperate,MAOC,3.11
+temperate,MAOC,3.11
+temperate,MAOC,1.75
+temperate,MAOC,1.75
+temperate,MAOC,8.30E+00
+temperate,MAOC,1.25E+01
+temperate,MAOC,1.15E+01
+temperate,MAOC,1.33E+01
+temperate,MAOC,3.14E+00
+temperate,MAOC,3.33E+00
+temperate,MAOC,2.98E+00
+temperate,MAOC,3.16E+00
+temperate,MAOC,3.60E+00
+temperate,MAOC,3.38E+00
+temperate,MAOC,3.19E+00
+temperate,MAOC,4.13E+00
+temperate,MAOC,4.60E+00
+temperate,MAOC,3.54E+01
+temperate,MAOC,3.54E+01
+temperate,MAOC,3.46E+01
+temperate,MAOC,3.46E+01
+temperate,MAOC,3.67E+01
+temperate,MAOC,3.67E+01
+cold,MAOC,7.58E+00
+cold,MAOC,7.58E+00
+cold,MAOC,7.58E+00
+cold,MAOC,7.58E+00
+temperate,MAOC,1.15E+01
+temperate,MAOC,1.15E+01
+temperate,MAOC,1.15E+01
+temperate,MAOC,1.22E+01
+temperate,MAOC,1.22E+01
+temperate,MAOC,1.04E+01
+temperate,MAOC,1.04E+01
+temperate,MAOC,1.06E+01
+temperate,MAOC,1.06E+01
+temperate,MAOC,1.07E+01
+temperate,MAOC,1.07E+01
+temperate,MAOC,9.70E+00
+temperate,MAOC,9.70E+00
+temperate,MAOC,9.70E+00
+temperate,MAOC,9.70E+00
+temperate,MAOC,17.1795
+cold,MAOC,18
+cold,MAOC,21
+cold,MAOC,18
+cold,MAOC,21
+cold,MAOC,6.00E+00
+cold,MAOC,6.00E+00
+cold,MAOC,6.00E+00
+cold,MAOC,6.39E+00
+cold,MAOC,6.39E+00
+cold,MAOC,6.39E+00
+arid,MAOC,6.86E+00
+arid,MAOC,6.86E+00
+arid,MAOC,6.86E+00
+arid,MAOC,6.70E+00
+arid,MAOC,6.70E+00
+arid,MAOC,6.70E+00
+cold,POC:MAOC,0.141818182
+temperate,POC:MAOC,0.286885246
+temperate,POC:MAOC,0.286885246
+temperate,POC:MAOC,0.091269841
+temperate,POC:MAOC,0.091269841
+temperate,POC:MAOC,0.054662379
+temperate,POC:MAOC,0.054662379
+temperate,POC:MAOC,0.028571429
+temperate,POC:MAOC,0.028571429
+temperate,POC:MAOC,0.135746606
+temperate,POC:MAOC,0.135746606
+temperate,POC:MAOC,0.087962963
+temperate,POC:MAOC,0.087962963
+temperate,POC:MAOC,0.076252723
+temperate,POC:MAOC,0.076252723
+cold,POC:MAOC,0.457783641
+cold,POC:MAOC,0.457783641
+cold,POC:MAOC,0.457783641
+cold,POC:MAOC,0.457783641
+temperate,POC:MAOC,0.196721311
+temperate,POC:MAOC,0.196721311
+temperate,POC:MAOC,0.076923077
+temperate,POC:MAOC,0.076923077
+temperate,POC:MAOC,0.047169811
+temperate,POC:MAOC,0.047169811
+temperate,POC:MAOC,0.037383178
+temperate,POC:MAOC,0.037383178
+temperate,POC:MAOC,0.041237113
+temperate,POC:MAOC,0.041237113
+temperate,POC:MAOC,0.030927835
+temperate,POC:MAOC,0.030927835
+temperate,POC:MAOC,0.361753252
+cold,POC:MAOC,0.277777778
+cold,POC:MAOC,0.285714286
+cold,POC:MAOC,0.111111111
+cold,POC:MAOC,0.095238095
+cold,POC:MAOC,0.496666667
+cold,POC:MAOC,0.496666667
+cold,POC:MAOC,0.496666667
+cold,POC:MAOC,0.505477308
+cold,POC:MAOC,0.505477308
+cold,POC:MAOC,0.505477308
+arid,POC:MAOC,0.229871645
+arid,POC:MAOC,0.229871645
+arid,POC:MAOC,0.229871645
+arid,POC:MAOC,0.128878282
+arid,POC:MAOC,0.128878282
+arid,POC:MAOC,0.128878282
+sandy,POC,1.56E+00
+loam,POC,1.40E+00
+loam,POC,1.40E+00
+loam,POC,4.60E-01
+loam,POC,4.60E-01
+loam,POC,0.17
+loam,POC,0.17
+clay loam,POC,0.05
+clay loam,POC,0.05
+loam,POC,3.216
+clay loam,POC,1.333333333
+loam,POC,2.72
+loam,POC,0.634666667
+clay loam,POC,3.6
+clay loam,POC,1.376
+loam,POC,0.416
+loam,POC,3.888
+clay,POC,4.8
+clay,POC,4.8
+clay,POC,3.04
+clay,POC,3.04
+clay,POC,2.8
+clay,POC,2.8
+loam,POC,3.47E+00
+loam,POC,3.47E+00
+loam,POC,3.47E+00
+loam,POC,3.47E+00
+clay loam,POC,2.40E+00
+clay loam,POC,2.40E+00
+clay loam,POC,8.00E-01
+clay loam,POC,8.00E-01
+clay loam,POC,5.00E-01
+clay loam,POC,5.00E-01
+clay loam,POC,4.00E-01
+clay loam,POC,4.00E-01
+clay loam,POC,4.00E-01
+clay loam,POC,4.00E-01
+clay loam,POC,3.00E-01
+clay loam,POC,3.00E-01
+clay loam,POC,4.85E+00
+clay loam,POC,3.03E+00
+clay loam,POC,1.64E+00
+clay loam,POC,1.58E+00
+loam,POC,6.55E+00
+loam,POC,2.02E+00
+clay loam,POC,1.58E+00
+clay loam,POC,8.18E-01
+clay loam,POC,1.744
+clay loam,POC,1.744
+clay loam,POC,6.21474
+loam,POC,5
+loam,POC,6
+loam,POC,2
+loam,POC,2
+loam,POC,2.98E+00
+loam,POC,2.98E+00
+loam,POC,2.98E+00
+loam,POC,3.23E+00
+loam,POC,3.23E+00
+loam,POC,3.23E+00
+clay loam,POC,1.58E+00
+clay loam,POC,1.58E+00
+clay loam,POC,1.58E+00
+clay loam,POC,8.64E-01
+clay loam,POC,8.64E-01
+clay loam,POC,8.64E-01
+sandy,MAOC,1.10E+01
+loam,MAOC,4.88
+loam,MAOC,4.88
+loam,MAOC,5.04
+loam,MAOC,5.04
+loam,MAOC,3.11
+loam,MAOC,3.11
+clay loam,MAOC,1.75
+clay loam,MAOC,1.75
+loam,MAOC,8.30E+00
+loam,MAOC,1.25E+01
+loam,MAOC,1.15E+01
+loam,MAOC,1.33E+01
+loam,MAOC,3.14E+00
+loam,MAOC,3.33E+00
+loam,MAOC,2.98E+00
+loam,MAOC,3.16E+00
+loam,MAOC,3.60E+00
+loam,MAOC,3.38E+00
+loam,MAOC,3.19E+00
+loam,MAOC,4.13E+00
+loam,MAOC,4.60E+00
+clay,MAOC,3.54E+01
+clay,MAOC,3.54E+01
+clay,MAOC,3.46E+01
+clay,MAOC,3.46E+01
+clay,MAOC,3.67E+01
+clay,MAOC,3.67E+01
+loam,MAOC,7.58E+00
+loam,MAOC,7.58E+00
+loam,MAOC,7.58E+00
+loam,MAOC,7.58E+00
+loam,MAOC,1.15E+01
+loam,MAOC,1.15E+01
+loam,MAOC,1.15E+01
+clay loam,MAOC,1.22E+01
+clay loam,MAOC,1.22E+01
+clay loam,MAOC,1.04E+01
+clay loam,MAOC,1.04E+01
+clay loam,MAOC,1.06E+01
+clay loam,MAOC,1.06E+01
+clay loam,MAOC,1.07E+01
+clay loam,MAOC,1.07E+01
+clay loam,MAOC,9.70E+00
+clay loam,MAOC,9.70E+00
+clay loam,MAOC,9.70E+00
+clay loam,MAOC,9.70E+00
+clay loam,MAOC,17.1795
+loam,MAOC,18
+loam,MAOC,21
+loam,MAOC,18
+loam,MAOC,21
+loam,MAOC,6.00E+00
+loam,MAOC,6.00E+00
+loam,MAOC,6.00E+00
+loam,MAOC,6.39E+00
+loam,MAOC,6.39E+00
+loam,MAOC,6.39E+00
+clay loam,MAOC,6.86E+00
+clay loam,MAOC,6.86E+00
+clay loam,MAOC,6.86E+00
+clay loam,MAOC,6.70E+00
+clay loam,MAOC,6.70E+00
+clay loam,MAOC,6.70E+00
+sandy,POC:MAOC,0.141818182
+loam,POC:MAOC,0.286885246
+loam,POC:MAOC,0.286885246
+loam,POC:MAOC,0.091269841
+loam,POC:MAOC,0.091269841
+loam,POC:MAOC,0.054662379
+loam,POC:MAOC,0.054662379
+clay loam,POC:MAOC,0.028571429
+clay loam,POC:MAOC,0.028571429
+clay,POC:MAOC,0.135746606
+clay,POC:MAOC,0.135746606
+clay,POC:MAOC,0.087962963
+clay,POC:MAOC,0.087962963
+clay,POC:MAOC,0.076252723
+clay,POC:MAOC,0.076252723
+loam,POC:MAOC,0.457783641
+loam,POC:MAOC,0.457783641
+loam,POC:MAOC,0.457783641
+loam,POC:MAOC,0.457783641
+clay loam,POC:MAOC,0.196721311
+clay loam,POC:MAOC,0.196721311
+clay loam,POC:MAOC,0.076923077
+clay loam,POC:MAOC,0.076923077
+clay loam,POC:MAOC,0.047169811
+clay loam,POC:MAOC,0.047169811
+clay loam,POC:MAOC,0.037383178
+clay loam,POC:MAOC,0.037383178
+clay loam,POC:MAOC,0.041237113
+clay loam,POC:MAOC,0.041237113
+clay loam,POC:MAOC,0.030927835
+clay loam,POC:MAOC,0.030927835
+clay loam,POC:MAOC,0.361753252
+loam,POC:MAOC,0.277777778
+loam,POC:MAOC,0.285714286
+loam,POC:MAOC,0.111111111
+loam,POC:MAOC,0.095238095
+loam,POC:MAOC,0.496666667
+loam,POC:MAOC,0.496666667
+loam,POC:MAOC,0.496666667
+loam,POC:MAOC,0.505477308
+loam,POC:MAOC,0.505477308
+loam,POC:MAOC,0.505477308
+clay loam,POC:MAOC,0.229871645
+clay loam,POC:MAOC,0.229871645
+clay loam,POC:MAOC,0.229871645
+clay loam,POC:MAOC,0.128878282
+clay loam,POC:MAOC,0.128878282
+clay loam,POC:MAOC,0.128878282
