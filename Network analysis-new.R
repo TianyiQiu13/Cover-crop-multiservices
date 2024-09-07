@@ -13,6 +13,66 @@ font=theme(axis.title=element_text(size=13),axis.text = element_text(size=12,col
            strip.text = element_text(size=12),legend.title = element_text(size = 12),
            legend.text = element_text(size = 12))#11.6inches
 
+#####Network calculation###
+a <- read.csv("Prediction-fulldata-new.csv",row.names = 1)
+
+###Upland###
+upland <- a%>%filter(cropland.type=="upland")
+RRs <- upland[,25:29]
+
+mvn(data = RRs, mvnTest = "hz", scale=TRUE)
+RRs.npn <- huge.npn(RRs, npn.func="truncation",verbose=T)
+mvn(data = RRs.npn, mvnTest = "hz", scale=TRUE)
+
+network <- estimateNetwork(RRs.npn,default = "EBICglasso",corMethod = "cor_auto",
+                           weighted = T, signed=T,directed=F,
+                           tuning = 0.5, threshold = T, criterion="ebic", verbose=F)
+plot(network)
+
+comm<-c("yield","SOCrr","N2O","CH4","MWD")
+boot_network_stability <- bootnet(network, statistics=c("strength","edge","expectedInfluence"),
+                                  weighted=T,signed=T, directed=F,computeCentrality=T, nCores=20,nBoots=1000,
+                                  communities=comm, type="case")
+
+corStability(boot_network_stability)###strength=0.75,caseMin=0.672,caseMax=1
+boot_network<- bootnet(network, statistics=c("strength","edge","expectedInfluence"),
+                       weighted=T,signed=T, directed=F,computeCentrality=T,
+                       nCores=20,nBoots=1000,communities=comm, 
+                       caseMin = 0.672, caseMax = 1)
+centrality <- centrality_auto(network,weighted = TRUE, signed = TRUE)
+centralityPlot(network)
+
+save(boot_network,boot_network_stability,file="Network_metrics_upland.RData")
+
+###Paddy###
+paddy <- a%>%filter(cropland.type=="paddy")
+RRs <- paddy[,25:29]
+
+mvn(data = RRs, mvnTest = "hz", scale=TRUE)
+RRs.npn <- huge.npn(RRs, npn.func="truncation",verbose=T)
+mvn(data = RRs.npn, mvnTest = "hz", scale=TRUE)
+
+network <- estimateNetwork(RRs.npn,default = "EBICglasso",corMethod = "cor_auto",
+                           weighted = T, signed=T,directed=F,
+                           tuning = 0.5, threshold = T, criterion="ebic", verbose=F)
+plot(network)
+
+comm<-c("yield","SOCrr","N2O","CH4","MWD")
+boot_network_stability <- bootnet(network, statistics=c("strength","edge","expectedInfluence"),
+                                  weighted=T,signed=T, directed=F,computeCentrality=T, nCores=20,nBoots=1000,
+                                  communities=comm, type="case")
+
+corStability(boot_network_stability)###strength=0.751,caseMin=0.672,caseMax=1
+boot_network<- bootnet(network, statistics=c("strength","edge","expectedInfluence"),
+                       weighted=T,signed=T, directed=F,computeCentrality=T,
+                       nCores=20,nBoots=1000,communities=comm, 
+                       caseMin = 0.672, caseMax = 1)
+centrality <- centrality_auto(network,weighted = TRUE, signed = TRUE)
+centralityPlot(network)
+
+save(boot_network,boot_network_stability,file="Network_metrics_paddy.RData")
+
+
 #####Plot#####
 ###upland###
 load(file= "Network_metrics_upland.RData")
@@ -182,62 +242,3 @@ node_g_paddy<-ggplot(metrics_paddy, aes(x=mean,y=node1,group=group,colour=group)
   theme_cowplot()+theme(legend.position = "none")+font+
   theme(axis.title.y = element_blank())
 node_g_paddy
-
-#####Network calculation###
-a <- read.csv("Prediction-fulldata-new.csv",row.names = 1)
-
-###Upland###
-upland <- a%>%filter(cropland.type=="upland")
-RRs <- upland[,25:29]
-
-mvn(data = RRs, mvnTest = "hz", scale=TRUE)
-RRs.npn <- huge.npn(RRs, npn.func="truncation",verbose=T)
-mvn(data = RRs.npn, mvnTest = "hz", scale=TRUE)
-
-network <- estimateNetwork(RRs.npn,default = "EBICglasso",corMethod = "cor_auto",
-                           weighted = T, signed=T,directed=F,
-                           tuning = 0.5, threshold = T, criterion="ebic", verbose=F)
-plot(network)
-
-comm<-c("yield","SOCrr","N2O","CH4","MWD")
-boot_network_stability <- bootnet(network, statistics=c("strength","edge","expectedInfluence"),
-        weighted=T,signed=T, directed=F,computeCentrality=T, nCores=20,nBoots=1000,
-        communities=comm, type="case")
-
-corStability(boot_network_stability)###strength=0.75,caseMin=0.672,caseMax=1
-boot_network<- bootnet(network, statistics=c("strength","edge","expectedInfluence"),
-                       weighted=T,signed=T, directed=F,computeCentrality=T,
-                       nCores=20,nBoots=1000,communities=comm, 
-                       caseMin = 0.672, caseMax = 1)
-centrality <- centrality_auto(network,weighted = TRUE, signed = TRUE)
-centralityPlot(network)
-
-save(boot_network,boot_network_stability,file="Network_metrics_upland.RData")
-
-###Paddy###
-paddy <- a%>%filter(cropland.type=="paddy")
-RRs <- paddy[,25:29]
-
-mvn(data = RRs, mvnTest = "hz", scale=TRUE)
-RRs.npn <- huge.npn(RRs, npn.func="truncation",verbose=T)
-mvn(data = RRs.npn, mvnTest = "hz", scale=TRUE)
-
-network <- estimateNetwork(RRs.npn,default = "EBICglasso",corMethod = "cor_auto",
-                           weighted = T, signed=T,directed=F,
-                           tuning = 0.5, threshold = T, criterion="ebic", verbose=F)
-plot(network)
-
-comm<-c("yield","SOCrr","N2O","CH4","MWD")
-boot_network_stability <- bootnet(network, statistics=c("strength","edge","expectedInfluence"),
-                                  weighted=T,signed=T, directed=F,computeCentrality=T, nCores=20,nBoots=1000,
-                                  communities=comm, type="case")
-
-corStability(boot_network_stability)###strength=0.751,caseMin=0.672,caseMax=1
-boot_network<- bootnet(network, statistics=c("strength","edge","expectedInfluence"),
-                       weighted=T,signed=T, directed=F,computeCentrality=T,
-                       nCores=20,nBoots=1000,communities=comm, 
-                       caseMin = 0.672, caseMax = 1)
-centrality <- centrality_auto(network,weighted = TRUE, signed = TRUE)
-centralityPlot(network)
-
-save(boot_network,boot_network_stability,file="Network_metrics_paddy.RData")

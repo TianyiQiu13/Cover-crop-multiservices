@@ -1,19 +1,11 @@
 library(raster)
 library(tidyverse)
 library(dplyr)
-library(mapproj)
-library(ggspatial)
-library(ggalt)
-library(rgdal)
-library(rworldmap)
-library(doParallel)
 library(ggplot2)
 library(ggpmisc)
 library(metafor)
 library(cowplot)
 
-doParallel::registerDoParallel(20)
-setwd("D:/资料/Cover crop")
 make_pct <- function(x) (exp(x) - 1) * 100
 font=theme(axis.title=element_text(size=13),axis.text = element_text(size=12,colour = 'black'),
            strip.text = element_text(size=12),legend.title = element_text(size = 12),

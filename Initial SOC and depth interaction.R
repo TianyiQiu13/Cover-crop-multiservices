@@ -2,8 +2,6 @@ library(ggrepel)
 library(rcartocolor)
 library(metafor)
 library(boot)
-library(parallel)
-library(doParallel)
 library(agricolae)
 library(readxl)
 library(broom)
@@ -12,22 +10,11 @@ library(funModeling)
 library(dplyr)
 library(cowplot)
 
-doParallel::registerDoParallel(20)
-setwd("D:/资料/Cover crop")
 make_pct <- function(x) (exp(x) - 1) * 100
 font=theme(axis.title=element_text(size=13),axis.text = element_text(size=12,colour = 'black'),
            strip.text = element_text(size=12),legend.title = element_text(size = 12),
            legend.text = element_text(size = 12))#11.6inches
-a <- read.csv("Co-management of water and N.csv")
-a$ID <- as.factor(a$ID)
-a$study <- as.factor(a$study)
 
-
-###Plot###
-
-
-###Calculation###
-###Interaction###
 a<- read.csv("Initial SOC and depth interaction.csv")
 a$study <- as.factor(a$ID)
 a$study <- as.factor(a$study)

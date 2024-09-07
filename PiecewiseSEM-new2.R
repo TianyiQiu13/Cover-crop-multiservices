@@ -297,37 +297,3 @@ ggdraw()+
   draw_plot_label(label = c("a","b","c","d","e","f","g","h"), size = 15,
                   x=c(0.005,0.505,0.225,0.725,0.005,0.505,0.005,0.505), 
                   y=c(0.985,0.985,2/3+0.01,2/3+0.01,0.575,0.575,0.2,0.2))##10.2*11.6
-####Network plot is in Network analysis.R###
-
-
-
-# Prediction full-database
-a <- read.csv("SEM preparation.csv")
-mf_cv <- readRDS("yield_mf-new2.RData")
-final_yield = mf_cv$finalModel
-a$yieldpred = predict(final_yield, data = a)$predictions
-
-mf_cv <- readRDS("SOC_mf-new2.RData")
-final_SOC = mf_cv$finalModel
-a$SOCpred = predict(final_SOC, data = a)$predictions
-
-mf_cv <- readRDS("N2O_mf-new2.RData")
-final_N2O = mf_cv$finalModel
-a$N2Opred = predict(final_N2O, data = a)$predictions
-
-mf_cv <- readRDS("CH4_mf-new.RData")
-final_CH4 = mf_cv$finalModel
-a$CH4pred = predict(final_CH4, data = a)$predictions
-
-mf_cv <- readRDS("MWD_mf-new2.RData")
-final_MWD = mf_cv$finalModel
-a$MWDpred = predict(final_MWD, data = a)$predictions
-
-
-a$yieldfull <- ifelse(is.na(a$rryield),a$yieldpred,a$rryield)
-a$SOCfull <- ifelse(is.na(a$rrSOC),a$SOCpred,a$rrSOC)
-a$N2Ofull <- ifelse(is.na(a$rrN2O),a$N2Opred,a$rrN2O)
-a$CH4full <- ifelse(is.na(a$rrCH4),a$CH4pred,a$rrCH4)
-a$MWDfull <- ifelse(is.na(a$rrMWD),a$MWDpred,a$rrMWD)
-
-write.csv(a,"Prediction-fulldata-new.csv")

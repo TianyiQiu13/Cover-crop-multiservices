@@ -11,8 +11,6 @@ font=theme(axis.title=element_text(size=13),axis.text = element_text(size=12,col
            strip.text = element_text(size=12),legend.title = element_text(size = 12),
            legend.text = element_text(size = 12))#11.6inches
 
-
-
 ### Upland ###
 yield.upland <- raster("yield.upland.percMean.tif")
 yield.SSP126.upland <- raster("yield.upland.SSP126.2091-2100.percMean.tif")
