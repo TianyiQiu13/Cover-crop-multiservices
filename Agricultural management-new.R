@@ -2,8 +2,6 @@ library(ggrepel)
 library(rcartocolor)
 library(metafor)
 library(boot)
-library(parallel)
-library(doParallel)
 library(agricolae)
 library(readxl)
 library(broom)
@@ -12,7 +10,6 @@ library(funModeling)
 library(dplyr)
 library(cowplot)
 
-setwd("D:/Document/Cover crop")
 make_pct <- function(x) (exp(x) - 1) * 100
 font=theme(axis.title=element_text(size=13),axis.text = element_text(size=12,colour = 'black'),
            strip.text = element_text(size=12),legend.title = element_text(size = 12),
@@ -20,87 +17,6 @@ font=theme(axis.title=element_text(size=13),axis.text = element_text(size=12,col
 a <- read.csv("S3-preparation.csv")
 a$ID <- as.factor(a$ID)
 a$study <- as.factor(a$study)
-
-
-###Plot###
-data <- read.csv("Agricultural management.csv")
-data$type <- factor(data$type,levels = c("No","Yes","Conservation","Conventional",
-                                         "Rainfed","Irrigated","Intermittent","Flooding"))
-data$management <- factor(data$management,levels = c("Organic fertilizer","Tillage",
-                                                     "Irrigation (upland)","Irrigation (paddy)"))
-
-Yield <- data%>%filter(variable=="Yield")
-p1 <- forestplot(df=Yield,name = type,estimate = mean,se=std.error,colour=variable,pvalue = pval)+
-  ggforce::facet_col(~management,scales = "free_y",space="free")+
-  scale_color_manual(values = "#e4615d")+
-  geom_text(aes(label=n,x=13,y=type))+
-  xlab("CC effect on yield (%)")+font+
-  theme(legend.position = "none",axis.title.y = element_blank())
-
-SOC <- data%>%filter(variable=="SOC")
-p2 <- forestplot(df=SOC,name = type,estimate = mean,se=std.error,colour=variable,pvalue = pval)+
-  ggforce::facet_col(~management,scales = "free_y",space="free")+
-  scale_color_manual(values = "#fdc58f")+
-  geom_text(aes(label=n,x=17.2,y=type))+
-  xlab(expression(paste("CC effect on ",SOC[stock]," (%)",sep="")))+font+
-  theme(legend.position = "none",axis.title.y = element_blank())
-
-N2O <- data%>%filter(variable=="N2O")
-p3 <- forestplot(df=N2O,name = type,estimate = mean,se=std.error,colour=variable,pvalue = pval)+
-  ggforce::facet_col(~management,scales = "free_y",space="free")+
-  scale_color_manual(values = "#99d9d0")+
-  geom_text(aes(label=n,x=90,y=type))+
-  xlab(expression(paste("CC effect on ",N[2],"O (%)",sep = "")))+font+
-  theme(legend.position = "none",axis.title.y = element_blank())
-
-CH4 <- data%>%filter(variable=="CH4")
-p4 <- forestplot(df=CH4,name = type,estimate = mean,se=std.error,colour=variable,pvalue = pval)+
-  ggforce::facet_col(~management,scales = "free_y",space="free")+
-  scale_color_manual(values = "#95b2d6")+
-  geom_text(aes(label=n,x=115,y=type))+
-  xlab(expression(paste("CC effect on ",CH[4]," (%)",sep = "")))+font+
-  theme(legend.position = "none",axis.title.y = element_blank())
-
-MWD <- data%>%filter(variable=="MWD")
-p5 <- forestplot(df=MWD,name = type,estimate = mean,se=std.error,colour=variable,pvalue = pval)+
-  ggforce::facet_col(~management,scales = "free_y",space="free")+
-  scale_color_manual(values = "#ea9c9d")+
-  geom_text(aes(label=n,x=26,y=type))+
-  xlab("CC effect on MWD (%)")+font+
-  theme(legend.position = "none",axis.title.y = element_blank())
-
-inter <- read.csv("Interaction results.csv")
-inter$management <- factor(inter$management,levels = c("Organic fertilizer","Conservation tillage",
-                                                       "Intermittent irrigation"))
-inter$variable <- factor(inter$variable,levels = c("Yield","SOC","N2O","CH4","MWD"))
-inter$sig <- factor(inter$sig,labels = c("Negative","Additive","Positive"))
-
-p6 <- ggplot(inter)+ 
-  geom_hline(aes(yintercept=0),linetype="dashed",colour="black",size=0.25)+ ##在0画虚线
-  geom_point(aes(x=variable, y=mean,color=sig),stat="identity",size=3)+ ##画数据点
-  geom_errorbar(aes(x=variable,ymin=conf.low, ymax=conf.high,color=sig), width=0, size=0.8)+ ##画95%CI
-  geom_text(aes(label=n, x=variable,y=mean,hjust=-0.5,vjust=0.15),size=3.8)+  ##添加数据量
-  facet_wrap(~management,ncol = 1,scales = "free_y")+
-  scale_x_discrete(labels = c("Yield",expression(SOC[stock]),
-                              expression(paste(N[2],"O",sep="")),
-                   expression(CH[4]),"MWD"))+
-  labs(color = "") +ylab("CC x agricultural management effect (%)")+
-  theme_cowplot()+font+
-  theme(legend.position="top",axis.text.x = element_text(angle=45,hjust = 0.2,vjust = 0.51),
-        axis.title.x = element_blank(),
-        legend.key = element_rect(fill = NA),legend.box.spacing = unit(0.2,"cm"),
-        legend.spacing.x = unit(0.18,"cm"),strip.background = element_rect(fill = "#dbdbdb"))+ 
-  scale_colour_manual(values=c("#ff0606","#bdbdbd","#525dff"))
-  
-ggdraw()+ 
-  draw_plot(p3, x=2/3, y=0.5, width = 1/3, height = 0.5)+
-  draw_plot(p2, x=1/3, y=0.5, width = 1/3, height = 0.5)+
-  draw_plot(p1, x=0, y=0.5, width = 1/3, height = 0.5)+
-  draw_plot(p4, x=0, y=0, width = 1/3, height = 0.5)+
-  draw_plot(p5, x=1/3, y=0, width = 1/3, height = 0.5)+
-  draw_plot(p6, x=2/3+0.01, y=-0.02, width = 1/3-0.01, height = 0.53)+
-  draw_plot_label(label = c("a","b","c","d","e","f"), size = 15,
-                  x=c(0,1/3,2/3,0,1/3,2/3), y=c(1,1,1,0.5,0.5,0.5))##11.6*8.6
 
 ###Calculation###
 ####OF####
@@ -166,8 +82,7 @@ c <- rbind.data.frame(yield_output,SOC_output,N2O_output,CH4_output,MWD_output)
 d <- cbind.data.frame(b,c)
 d$variable <- c("Yield","Yield","SOC","SOC","N2O","N2O","CH4","CH4","MWD","MWD")
 d$type <- c("No","Yes")
-write.csv(d,"S3-OF.csv")
-
+#write.csv(d,"S3-OF.csv")
 
 ####tillage####
 yield.func2 <- function(a, index) {
@@ -232,7 +147,7 @@ f <- rbind.data.frame(yield_output,SOC_output,N2O_output,CH4_output,MWD_output)
 g <- cbind.data.frame(e,f)
 g$variable <- c("Yield","Yield","SOC","SOC","N2O","N2O","CH4","CH4","MWD","MWD")
 g$type <- c("Conservation","Conventional")
-write.csv(g,"S3-tillage.csv")
+#write.csv(g,"S3-tillage.csv")
 
 ####irrigation####
 #upland
@@ -299,7 +214,7 @@ i <- rbind.data.frame(yield_output,SOC_output,N2O_output,CH4_output,MWD_output)
 j <- cbind.data.frame(h,i)
 j$variable <- c("Yield","Yield","SOC","SOC","N2O","N2O","CH4","CH4","MWD","MWD")
 j$type <- c("Irrigated","Rainfed")
-write.csv(j,"S3-irrigation-upland.csv")
+#write.csv(j,"S3-irrigation-upland.csv")
 #paddy
 paddy <- a%>%filter(cropland.type=="paddy")
 yield.func4 <- function(paddy, index) {
@@ -367,7 +282,7 @@ m <- cbind.data.frame(k,l)
 m$variable <- c("Yield","Yield","Yield","SOC","SOC","SOC","N2O","N2O","N2O",
                 "CH4","CH4","CH4","MWD","MWD","MWD")
 m$type <- c("Flooding","Intermittent","Rainfed")
-write.csv(m,"S3-irrigation-paddy.csv")
+#write.csv(m,"S3-irrigation-paddy.csv")
 
 ###Interaction###
 interaction<- read.csv("Interaction of CC with management.csv")
@@ -545,4 +460,85 @@ Irrigation_output$variable <- c("Yield","SOC","N2O","CH4")
 
 Interaction_total <- rbind.data.frame(OF_output,Tillage_output,Irrigation_output)
 write.csv(Interaction_total,"Interaction results.csv")
+
+
+###Plot###
+data <- read.csv("Agricultural management.csv")
+data$type <- factor(data$type,levels = c("No","Yes","Conservation","Conventional",
+                                         "Rainfed","Irrigated","Intermittent","Flooding"))
+data$management <- factor(data$management,levels = c("Organic fertilizer","Tillage",
+                                                     "Irrigation (upland)","Irrigation (paddy)"))
+
+Yield <- data%>%filter(variable=="Yield")
+p1 <- forestplot(df=Yield,name = type,estimate = mean,se=std.error,colour=variable,pvalue = pval)+
+  ggforce::facet_col(~management,scales = "free_y",space="free")+
+  scale_color_manual(values = "#e4615d")+
+  geom_text(aes(label=n,x=13,y=type))+
+  xlab("CC effect on yield (%)")+font+
+  theme(legend.position = "none",axis.title.y = element_blank())
+
+SOC <- data%>%filter(variable=="SOC")
+p2 <- forestplot(df=SOC,name = type,estimate = mean,se=std.error,colour=variable,pvalue = pval)+
+  ggforce::facet_col(~management,scales = "free_y",space="free")+
+  scale_color_manual(values = "#fdc58f")+
+  geom_text(aes(label=n,x=17.2,y=type))+
+  xlab(expression(paste("CC effect on ",SOC[stock]," (%)",sep="")))+font+
+  theme(legend.position = "none",axis.title.y = element_blank())
+
+N2O <- data%>%filter(variable=="N2O")
+p3 <- forestplot(df=N2O,name = type,estimate = mean,se=std.error,colour=variable,pvalue = pval)+
+  ggforce::facet_col(~management,scales = "free_y",space="free")+
+  scale_color_manual(values = "#99d9d0")+
+  geom_text(aes(label=n,x=90,y=type))+
+  xlab(expression(paste("CC effect on ",N[2],"O (%)",sep = "")))+font+
+  theme(legend.position = "none",axis.title.y = element_blank())
+
+CH4 <- data%>%filter(variable=="CH4")
+p4 <- forestplot(df=CH4,name = type,estimate = mean,se=std.error,colour=variable,pvalue = pval)+
+  ggforce::facet_col(~management,scales = "free_y",space="free")+
+  scale_color_manual(values = "#95b2d6")+
+  geom_text(aes(label=n,x=115,y=type))+
+  xlab(expression(paste("CC effect on ",CH[4]," (%)",sep = "")))+font+
+  theme(legend.position = "none",axis.title.y = element_blank())
+
+MWD <- data%>%filter(variable=="MWD")
+p5 <- forestplot(df=MWD,name = type,estimate = mean,se=std.error,colour=variable,pvalue = pval)+
+  ggforce::facet_col(~management,scales = "free_y",space="free")+
+  scale_color_manual(values = "#ea9c9d")+
+  geom_text(aes(label=n,x=26,y=type))+
+  xlab("CC effect on MWD (%)")+font+
+  theme(legend.position = "none",axis.title.y = element_blank())
+
+inter <- read.csv("Interaction results.csv")
+inter$management <- factor(inter$management,levels = c("Organic fertilizer","Conservation tillage",
+                                                       "Intermittent irrigation"))
+inter$variable <- factor(inter$variable,levels = c("Yield","SOC","N2O","CH4","MWD"))
+inter$sig <- factor(inter$sig,labels = c("Negative","Additive","Positive"))
+
+p6 <- ggplot(inter)+ 
+  geom_hline(aes(yintercept=0),linetype="dashed",colour="black",size=0.25)+ ##在0画虚线
+  geom_point(aes(x=variable, y=mean,color=sig),stat="identity",size=3)+ ##画数据点
+  geom_errorbar(aes(x=variable,ymin=conf.low, ymax=conf.high,color=sig), width=0, size=0.8)+ ##画95%CI
+  geom_text(aes(label=n, x=variable,y=mean,hjust=-0.5,vjust=0.15),size=3.8)+  ##添加数据量
+  facet_wrap(~management,ncol = 1,scales = "free_y")+
+  scale_x_discrete(labels = c("Yield",expression(SOC[stock]),
+                              expression(paste(N[2],"O",sep="")),
+                              expression(CH[4]),"MWD"))+
+  labs(color = "") +ylab("CC x agricultural management effect (%)")+
+  theme_cowplot()+font+
+  theme(legend.position="top",axis.text.x = element_text(angle=45,hjust = 0.2,vjust = 0.51),
+        axis.title.x = element_blank(),
+        legend.key = element_rect(fill = NA),legend.box.spacing = unit(0.2,"cm"),
+        legend.spacing.x = unit(0.18,"cm"),strip.background = element_rect(fill = "#dbdbdb"))+ 
+  scale_colour_manual(values=c("#ff0606","#bdbdbd","#525dff"))
+
+ggdraw()+ 
+  draw_plot(p3, x=2/3, y=0.5, width = 1/3, height = 0.5)+
+  draw_plot(p2, x=1/3, y=0.5, width = 1/3, height = 0.5)+
+  draw_plot(p1, x=0, y=0.5, width = 1/3, height = 0.5)+
+  draw_plot(p4, x=0, y=0, width = 1/3, height = 0.5)+
+  draw_plot(p5, x=1/3, y=0, width = 1/3, height = 0.5)+
+  draw_plot(p6, x=2/3+0.01, y=-0.02, width = 1/3-0.01, height = 0.53)+
+  draw_plot_label(label = c("a","b","c","d","e","f"), size = 15,
+                  x=c(0,1/3,2/3,0,1/3,2/3), y=c(1,1,1,0.5,0.5,0.5))##11.6*8.6
 
